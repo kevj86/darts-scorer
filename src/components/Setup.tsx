@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { GameType, InputMode } from '../logic/game';
 import { load, save } from '../storage';
-import { THEMES, type Theme, loadTheme, saveTheme } from '../theme';
+import { type Theme, loadTheme, saveTheme } from '../theme';
 
 export interface SetupResult {
   names: string[];
@@ -95,16 +95,17 @@ export function Setup({ onStart }: { onStart: (r: SetupResult) => void }) {
         </div>
       </section>
 
-      <section className="field">
-        <h2>Colour</h2>
-        <div className="swatches">
-          {THEMES.map((t) => (
-            <button key={t.id} className={`swatch ${theme === t.id ? 'on' : ''}`} onClick={() => pickTheme(t.id)}>
-              <span className="dot" style={{ background: t.color, boxShadow: `0 0 12px ${t.color}` }} />
-              {t.label}
-            </button>
-          ))}
-        </div>
+      <section className="field theme-row">
+        <h2>Theme</h2>
+        <button
+          role="switch"
+          aria-checked={theme === 'blue'}
+          aria-label="Theme"
+          className={`theme-switch ${theme}`}
+          onClick={() => pickTheme(theme === 'green' ? 'blue' : 'green')}
+        >
+          <span className="knob" />
+        </button>
       </section>
 
       <button className="primary start" onClick={start}>
