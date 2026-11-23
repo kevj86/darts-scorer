@@ -14,6 +14,7 @@ import {
 } from '../logic/game';
 import { DartPad } from './DartPad';
 import { TotalPad } from './TotalPad';
+import { isSicknote, UnicornBackdrop, useRainbowConfetti } from './Sicknote';
 
 interface Props {
   game: GameState;
@@ -215,11 +216,14 @@ export function Game({ game, mode, canUndo, onChange, onUndo, onMode, onQuit, on
 function Winner({ game, onRematch, onQuit, onUndo }: { game: GameState; onRematch: () => void; onQuit: () => void; onUndo: () => void }) {
   const w = game.winner!;
   const finish = game.players[w].visits.at(-1)!;
+  const sicknote = isSicknote(game.players[w].name);
+  useRainbowConfetti(sicknote);
   return (
     <div className="modal-bg">
-      <div className="modal winner">
+      <div className={`modal winner ${sicknote ? 'sicknote' : ''}`}>
+        {sicknote && <UnicornBackdrop />}
         <div className="gameshot">Game shot!</div>
-        <h2>{game.players[w].name} wins</h2>
+        <h2>{sicknote ? 'Sicknote' : game.players[w].name} wins</h2>
         <p className="muted">
           Checked out {finish.points}
           {finish.thrown ? ` (${finish.thrown.map(dartLabel).join(', ')})` : ''} in {playerStats(game, w).darts} darts

@@ -302,3 +302,67 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   font-weight: 800;
 }
 .bull-player:active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* ---------- Sicknote celebration ---------- */
+.modal.sicknote {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 0 60px rgb(255 255 255 / 0.35);
+  background: transparent;
+  isolation: isolate;
+}
+.sicknote-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    #e40303 0 16.66%,
+    #ff8c00 16.66% 33.33%,
+    #ffed00 33.33% 50%,
+    #008026 50% 66.66%,
+    #24408e 66.66% 83.33%,
+    #732982 83.33% 100%
+  );
+}
+.sicknote-bg::after {
+  /* darkened panel in the middle so the message and stats stay readable */
+  content: '';
+  position: absolute;
+  inset: 14% 8%;
+  border-radius: 16px;
+  background: rgb(10 10 14 / 0.82);
+}
+.unicorn {
+  position: absolute;
+  z-index: 1;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.4));
+  animation: unicorn-bounce 1.6s ease-in-out infinite;
+}
+@keyframes unicorn-bounce {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+.sicknote .gameshot {
+  margin-top: 18%;
+  color: #fff;
+}
+.sicknote h2 {
+  font-size: 2.3rem;
+  background: linear-gradient(90deg, #ff5a5a, #ffb13b, #ffed00, #3ddc6b, #4d8bff, #c77dff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sicknote .stats, .sicknote p { position: relative; margin-left: 8%; margin-right: 8%; width: auto; }
+.sicknote .stats { font-size: 0.78rem; }
+.sicknote .stats tr.win td { color: #ffed00; }
+.sicknote .primary, .sicknote .ghost { position: relative; }
+.sicknote .primary { background: #fff; color: #111; box-shadow: none; }
+.sicknote .ghost { background: rgb(0 0 0 / 0.6); }
+.sicknote .link { color: #fff; margin-bottom: 4%; }
+@media (prefers-reduced-motion: reduce) {
+  .unicorn { animation: none; }
+}
