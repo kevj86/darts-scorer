@@ -27,11 +27,11 @@ Built with React, TypeScript, Vite and vite-plugin-pwa.
 
 ## Deploying
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, which tests, builds and publishes to GitHub Pages.
-To enable it, open the repo's **Settings → Pages** and set **Source** to **GitHub Actions**.
+Hosted on Netlify. `netlify.toml` holds the settings: build with `npm test && npm run build` and publish `dist/`.
+Every push to `main` deploys automatically once the repo is linked in Netlify.
 
 ## Installing on your phone
 
-Open the GitHub Pages URL, then:
+Open the Netlify URL, then:
 - **iPhone (Safari):** Share → Add to Home Screen
 - **Android (Chrome):** menu → Install app
