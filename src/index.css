@@ -288,3 +288,17 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   transition: transform 0.2s ease;
 }
 .theme-switch.blue .knob { transform: translateX(30px); }
+
+/* ---------- bull-off ---------- */
+.bull-off { z-index: 30; }
+.bull-off .logo { width: 56px; height: 56px; margin: 0 auto 10px; }
+.bull-players { display: grid; gap: 8px; }
+.bull-player {
+  background: var(--surface-2);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.bull-player:active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }

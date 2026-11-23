@@ -5,13 +5,14 @@ A mobile-first progressive web app (PWA) for keeping score in darts, themed in b
 ## Features
 
 - 1 to 4 players, each with a name
+- "Closest to the bull" picker before each game (and rematch): whoever is tapped throws first
 - 301 or 501, double out, single leg
 - **Every dart** entry (single / double / treble, 25, bull, miss): the score updates with each dart
 - **Turn total** entry for faster scoring, with quick buttons (26, 41, 45, 60, 81, 85, 100, 140, 180)
 - Live **best checkout** suggestion that updates after every dart, based on the darts left in the turn
 - **Bust** handling: going below zero, leaving 1, or finishing on a non-double resets to the score at the start of the turn
 - Live 3-dart average for each player, plus end-of-game stats (darts, highest score, 100+, 140+, 180s)
-- Undo, rematch (the starting player rotates), and the game survives a page refresh
+- Undo, rematch, and the game survives a page refresh
 - Neon green or neon blue colour scheme, switched with the Theme toggle on the setup screen and remembered
 - Installable and works offline; keeps the screen awake during a game
 
