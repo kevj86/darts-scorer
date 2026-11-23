@@ -1,6 +1,6 @@
 # Darts Scorer
 
-A mobile-first progressive web app (PWA) for keeping score in darts, themed in black and neon green.
+A mobile-first progressive web app (PWA) for keeping score in darts, themed in black with a choice of neon green or neon blue.
 
 ## Features
 
@@ -12,6 +12,7 @@ A mobile-first progressive web app (PWA) for keeping score in darts, themed in b
 - **Bust** handling: going below zero, leaving 1, or finishing on a non-double resets to the score at the start of the turn
 - Live 3-dart average for each player, plus end-of-game stats (darts, highest score, 100+, 140+, 180s)
 - Undo, rematch (the starting player rotates), and the game survives a page refresh
+- Neon green or neon blue colour scheme, chosen on the setup screen and remembered
 - Installable and works offline; keeps the screen awake during a game
 
 ## Development

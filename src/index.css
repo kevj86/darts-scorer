@@ -7,12 +7,23 @@
   --muted: #8b968a;
   --accent: #a6ff00;
   --accent-dim: #4d7a00;
+  --accent-rgb: 166 255 0;
+  --active-tint: #172010;
   --accent-ink: #061000;
   --danger: #ff3b4e;
   --radius: 14px;
   color-scheme: dark;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Neon blue theme */
+:root[data-theme='blue'] {
+  --accent: #00d9ff;
+  --accent-dim: #00657a;
+  --accent-rgb: 0 217 255;
+  --accent-ink: #00141a;
+  --active-tint: #0a1d24;
 }
 
 * { box-sizing: border-box; }
@@ -59,7 +70,7 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   border-radius: var(--radius);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  box-shadow: 0 0 24px rgb(166 255 0 / 0.25);
+  box-shadow: 0 0 24px rgb(var(--accent-rgb) / 0.25);
 }
 .ghost { background: var(--surface-2); padding: 12px 16px; border-radius: var(--radius); font-weight: 600; }
 .wide { width: 100%; margin-top: 10px; }
@@ -76,7 +87,7 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   gap: 22px;
 }
 .brand { display: flex; align-items: center; gap: 12px; }
-.logo { width: 52px; height: 52px; filter: drop-shadow(0 0 10px rgb(166 255 0 / 0.35)); }
+.logo { width: 52px; height: 52px; filter: drop-shadow(0 0 10px rgb(var(--accent-rgb) / 0.35)); }
 .brand h1 { margin: 0; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
 .brand h1 span { color: var(--accent); }
 .field h2 { margin: 0 0 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
@@ -125,7 +136,7 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   min-width: 0;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
-.player.active { border-color: var(--accent); box-shadow: 0 0 18px rgb(166 255 0 / 0.18); background: linear-gradient(180deg, #172010, var(--surface)); }
+.player.active { border-color: var(--accent); box-shadow: 0 0 18px rgb(var(--accent-rgb) / 0.18); background: linear-gradient(180deg, var(--active-tint), var(--surface)); }
 .pname { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.95rem; }
 .player.active .pname { color: var(--accent); }
 .pscore { font-size: 2.8rem; font-weight: 900; line-height: 1.05; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
@@ -212,7 +223,7 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
   z-index: 20;
 }
 .flash.bust { background: var(--danger); color: #fff; box-shadow: 0 0 40px rgb(255 59 78 / 0.5); }
-.flash.big { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 40px rgb(166 255 0 / 0.5); font-size: 2.4rem; }
+.flash.big { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 40px rgb(var(--accent-rgb) / 0.5); font-size: 2.4rem; }
 @keyframes pop {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
   15% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
@@ -244,7 +255,7 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
 }
 .modal h2 { margin: 0 0 6px; }
 .modal p { margin: 0 0 14px; }
-.winner { border-color: var(--accent); box-shadow: 0 0 50px rgb(166 255 0 / 0.25); }
+.winner { border-color: var(--accent); box-shadow: 0 0 50px rgb(var(--accent-rgb) / 0.25); }
 .gameshot { color: var(--accent); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.9rem; }
 .winner h2 { font-size: 2rem; }
 .stats { width: 100%; border-collapse: collapse; margin: 4px 0 8px; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
@@ -252,3 +263,19 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
 .stats td { padding: 6px 2px; border-top: 1px solid var(--line); }
 .stats td:first-child { text-align: left; max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
 .stats tr.win td { color: var(--accent); }
+
+/* ---------- theme picker ---------- */
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  font-weight: 700;
+  color: var(--muted);
+}
+.swatch.on { border-color: var(--accent); color: var(--text); }
+.swatch .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }

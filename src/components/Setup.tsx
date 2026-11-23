@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { GameType, InputMode } from '../logic/game';
 import { load, save } from '../storage';
+import { THEMES, type Theme, loadTheme, saveTheme } from '../theme';
 
 export interface SetupResult {
   names: string[];
@@ -20,6 +21,11 @@ const defaults: Prefs = { count: 2, names: ['', '', '', ''], startScore: 501, mo
 
 export function Setup({ onStart }: { onStart: (r: SetupResult) => void }) {
   const [prefs, setPrefs] = useState<Prefs>(() => ({ ...defaults, ...load(PREFS_KEY, defaults) }));
+  const [theme, setTheme] = useState<Theme>(loadTheme);
+  const pickTheme = (t: Theme) => {
+    setTheme(t);
+    saveTheme(t);
+  };
   const update = (p: Partial<Prefs>) => setPrefs((prev) => ({ ...prev, ...p }));
 
   const start = () => {
@@ -86,6 +92,18 @@ export function Setup({ onStart }: { onStart: (r: SetupResult) => void }) {
           <button className={prefs.mode === 'total' ? 'on' : ''} onClick={() => update({ mode: 'total' })}>
             Turn total
           </button>
+        </div>
+      </section>
+
+      <section className="field">
+        <h2>Colour</h2>
+        <div className="swatches">
+          {THEMES.map((t) => (
+            <button key={t.id} className={`swatch ${theme === t.id ? 'on' : ''}`} onClick={() => pickTheme(t.id)}>
+              <span className="dot" style={{ background: t.color, boxShadow: `0 0 12px ${t.color}` }} />
+              {t.label}
+            </button>
+          ))}
         </div>
       </section>
 
