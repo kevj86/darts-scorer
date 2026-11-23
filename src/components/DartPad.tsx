@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Dart, Multiplier } from '../logic/darts';
 
-export function DartPad({ onDart, onUndo, canUndo }: { onDart: (d: Dart) => void; onUndo: () => void; canUndo: boolean }) {
+export function DartPad({ onDart, onBust, onUndo, canUndo }: { onDart: (d: Dart) => void; onBust: () => void; onUndo: () => void; canUndo: boolean }) {
   const [mult, setMult] = useState<Multiplier>(1);
 
   const hit = (n: number, m: Multiplier = mult) => {
@@ -33,6 +33,9 @@ export function DartPad({ onDart, onUndo, canUndo }: { onDart: (d: Dart) => void
         <button onClick={() => hit(25, 2)}>Bull</button>
         <button className="miss" onClick={() => hit(0, 1)}>
           Miss
+        </button>
+        <button className="bust" onClick={() => { setMult(1); onBust(); }}>
+          Bust
         </button>
         <button className="undo" onClick={onUndo} disabled={!canUndo}>
           Undo

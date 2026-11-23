@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { bestCheckout } from './checkout';
 import { dartLabel, dartScore, type Dart } from './darts';
-import { enterTotal, newGame, playerStats, remaining, throwDart } from './game';
+import { declareBust, enterTotal, newGame, playerStats, remaining, throwDart } from './game';
 
 const labels = (ds: Dart[] | null) => ds?.map(dartLabel).join(' ') ?? null;
 const t = (n: number): Dart => ({ n, m: 3 });
@@ -78,5 +78,16 @@ describe('game', () => {
     g = enterTotal(g, 100);
     g = enterTotal(g, 161, 3);
     expect(g.winner).toBe(0);
+  });
+});
+
+describe('declareBust', () => {
+  it('ends the turn, reverts the score and counts 3 darts', () => {
+    let g = newGame(['A', 'B'], 501);
+    g = throwDart(g, t(20));
+    g = declareBust(g);
+    expect(remaining(g, 0)).toBe(501);
+    expect(g.current).toBe(1);
+    expect(g.players[0].visits[0]).toMatchObject({ bust: true, points: 0, darts: 3 });
   });
 });

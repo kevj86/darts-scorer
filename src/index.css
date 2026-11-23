@@ -185,8 +185,12 @@ input { font: inherit; user-select: text; -webkit-user-select: text; }
 .pad .mod.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .pad-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .pad-grid.dbl button, .pad-grid.tbl button { color: var(--accent); }
-.pad-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.pad-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .pad .miss { color: var(--muted); }
+.pad .bust { background: rgb(255 59 78 / 0.14); color: var(--danger); border: 2px solid rgb(255 59 78 / 0.5); font-size: 1rem; }
+.pad .bust:active:not(:disabled) { background: var(--danger); color: #fff; }
+.total-row { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
+.pad .total-row .bust { height: auto; padding: 0 22px; }
 .pad .undo { background: var(--surface); border: 2px solid var(--line); font-size: 1rem; }
 .total-display {
   background: var(--surface);

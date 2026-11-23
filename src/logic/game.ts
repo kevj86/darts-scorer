@@ -144,3 +144,14 @@ export function enterTotal(game: Game, total: number, checkoutDarts = 3): Game {
   }
   return endTurn(game, { points: total, darts: 3, bust: false, checkout: false, attempted: total }, false);
 }
+
+/** Declare the current turn bust without entering the darts: score goes back to the start of the turn. */
+export function declareBust(game: Game): Game {
+  if (game.winner !== null) return game;
+  const attempted = sum(game.turnDarts.map(dartScore));
+  return endTurn(
+    game,
+    { points: 0, darts: 3, bust: true, checkout: false, thrown: game.turnDarts.length ? game.turnDarts : undefined, attempted },
+    false,
+  );
+}

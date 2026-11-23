@@ -3,7 +3,7 @@ import { isPossibleVisit } from '../logic/darts';
 
 const QUICK = [26, 41, 45, 60, 81, 85, 100, 140, 180];
 
-export function TotalPad({ onTotal, onUndo, canUndo }: { onTotal: (t: number) => void; onUndo: () => void; canUndo: boolean }) {
+export function TotalPad({ onTotal, onBust, onUndo, canUndo }: { onTotal: (t: number) => void; onBust: () => void; onUndo: () => void; canUndo: boolean }) {
   const [value, setValue] = useState('');
   const num = value === '' ? null : Number(value);
   const valid = num !== null && isPossibleVisit(num);
@@ -16,8 +16,19 @@ export function TotalPad({ onTotal, onUndo, canUndo }: { onTotal: (t: number) =>
 
   return (
     <div className="pad">
-      <div className={`total-display ${num !== null && !valid ? 'invalid' : ''}`}>
-        {value || <span className="placeholder">Enter score</span>}
+      <div className="total-row">
+        <div className={`total-display ${num !== null && !valid ? 'invalid' : ''}`}>
+          {value || <span className="placeholder">Enter score</span>}
+        </div>
+        <button
+          className="bust"
+          onClick={() => {
+            setValue('');
+            onBust();
+          }}
+        >
+          Bust
+        </button>
       </div>
       <div className="quick">
         {QUICK.map((q) => (

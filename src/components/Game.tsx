@@ -3,6 +3,7 @@ import { bestCheckout } from '../logic/checkout';
 import { type Dart, dartLabel, dartScore } from '../logic/darts';
 import {
   classifyTotal,
+  declareBust,
   enterTotal,
   type Game as GameState,
   type InputMode,
@@ -155,9 +156,9 @@ export function Game({ game, mode, canUndo, onChange, onUndo, onMode, onQuit, on
       </section>
 
       {mode === 'dart' ? (
-        <DartPad onDart={onDart} onUndo={onUndo} canUndo={canUndo} />
+        <DartPad onDart={onDart} onBust={() => apply(declareBust(game))} onUndo={onUndo} canUndo={canUndo} />
       ) : (
-        <TotalPad onTotal={onTotal} onUndo={onUndo} canUndo={canUndo} />
+        <TotalPad onTotal={onTotal} onBust={() => apply(declareBust(game))} onUndo={onUndo} canUndo={canUndo} />
       )}
 
       {flash && game.winner === null && (
